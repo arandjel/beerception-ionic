@@ -1,3 +1,16 @@
 page-home {
+    ion-row {
+        text-align: center;
+    }
 
+    .ception-image {
+        border: 3px solid #78c2ad;
+        border-radius: 25px;
+        width: 100%;
+        max-width: 1200px;
+    }
+    
+    .vote-button {
+        width: 50%;
+    }
 }

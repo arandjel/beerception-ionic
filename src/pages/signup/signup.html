@@ -1,0 +1,64 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Sign up</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+    <ion-grid>
+      <ion-row>
+        <ion-col col-12 col-sm>
+          <ion-item *ngIf="invalidData && notification" class="alert alert-danger">
+            {{notification.msgBody}}
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-12 col-sm>
+          <form [formGroup]="formGroup">
+            <ion-item>
+              <ion-label floating>Email address</ion-label>
+              <ion-input formControlName="username" name="username" type="email"></ion-input>
+            </ion-item>
+            <ion-item *ngIf="!formValid && formGroup.get('username').invalid">
+                <p>Email is required. Please provide valid email.</p>
+            </ion-item>
+            <ion-item>
+              <ion-label floating>Password</ion-label>
+              <ion-input formControlName="password" name="password" type="password"></ion-input>
+            </ion-item>
+            <ion-item *ngIf="!formValid && formGroup.get('password').invalid">
+                <p>Password is required.</p>
+            </ion-item>
+            <ion-item>
+              <ion-label floating>First Name</ion-label>
+              <ion-input formControlName="firstname" name="firstname" type="text"></ion-input>
+            </ion-item>
+            <ion-item *ngIf="!formValid && formGroup.get('firstname').invalid">
+                <p>First name is required.</p>
+            </ion-item>
+            <ion-item>
+              <ion-label floating>Last Name</ion-label>
+              <ion-input formControlName="lastname" name="lastname" type="text"></ion-input>
+            </ion-item>
+            <ion-item *ngIf="!formValid && formGroup.get('lastname').invalid">
+                <p>Last name is required.</p>
+            </ion-item>
+            <ion-row>
+              <ion-col>
+                <button ion-button block (click)="onSubmit()">Sign up</button>
+                <img *ngIf="submitted" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+              </ion-col>
+              <ion-col>
+                  <button ion-button block (click)="toLogin()">Login</button>
+              </ion-col>
+            </ion-row>
+          </form>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-content>

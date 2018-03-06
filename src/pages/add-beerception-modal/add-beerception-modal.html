@@ -1,0 +1,52 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Add Beerception</ion-title>
+    <ion-buttons end>
+      <button ion-button color="danger" icon-only (click)="closeModal()">
+        <ion-icon name="md-close-circle"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <div *ngIf="currentFileUpload" class="progress">
+          <progress-bar [progress]="progress.percentage"></progress-bar>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <h5 class="choose-title">Choose a Beerception photo</h5>
+        <ion-buttons>
+          <button ion-button color="secondary" [disabled]="!selectedFiles" (click)="upload()">Upload</button>
+          <input (change)="selectFile($event)" type="file" class="custom-file-input" id="select-file">
+        </ion-buttons>
+        <button ion-button color="secondary" (click)="takePicture()">Take a Picture</button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-12 col-sm>
+        <ion-list>
+          <ion-list-header>
+              Rules
+          </ion-list-header>
+
+          <ion-item *ngFor="let rule of rules" text-wrap>
+            <button ion-button icon-only>
+              <ion-icon name="md-star"></ion-icon>
+            </button>
+            {{ rule }}
+          </ion-item>
+        
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
