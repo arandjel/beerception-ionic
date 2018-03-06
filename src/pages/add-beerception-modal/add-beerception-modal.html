@@ -28,7 +28,7 @@
           <button ion-button color="secondary" [disabled]="!selectedFiles" (click)="upload()">Upload</button>
           <input (change)="selectFile($event)" type="file" class="custom-file-input" id="select-file">
         </ion-buttons>
-        <button ion-button color="secondary" (click)="takePicture()">Take a Picture</button>
+        <button *ngIf="!isBrowserDevice()" ion-button color="secondary" (click)="takePicture()">Take a Picture</button>
       </ion-col>
     </ion-row>
     <ion-row>

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ViewController, ToastController } from 'ionic-angular';
+import { NavController, NavParams, ViewController, ToastController, Platform } from 'ionic-angular';
 import { HttpResponse, HttpEventType, HttpEvent } from '@angular/common/http';
 import { UploadFileProvider } from '../../providers/upload-file/upload-file';
 import { Camera, CameraOptions } from '@ionic-native/camera';
@@ -32,7 +32,8 @@ export class AddBeerceptionModalPage {
     public navParams: NavParams,
     private toastCtrl: ToastController,
     private camera: Camera,
-    private uploadFileProvider: UploadFileProvider) {
+    private uploadFileProvider: UploadFileProvider,
+    private platform: Platform) {
   }
 
   ionViewDidLoad() {
@@ -40,15 +41,15 @@ export class AddBeerceptionModalPage {
   }
 
   selectFile(event) {
-    if(!event.target || !event.target.files)
+    const file = event.target.files.item(0);
+
+    if (!file)
       return;
-      
-    const file = event.target.files.item(0)
 
     if (file.type.match('image.*')) {
       this.selectedFiles = event.target.files;
     } else {
-      alert('invalid format!');
+      this.presentToast('Invalid image format!');
     }
   }
 
@@ -116,4 +117,7 @@ export class AddBeerceptionModalPage {
     toast.present();
   }
 
+  isBrowserDevice() {
+    return this.platform.is('core') || this.platform.is('mobileweb');
+  }
 }

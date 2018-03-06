@@ -19,10 +19,12 @@
   <ion-grid>
     <ion-row>
       <ion-col col-12 col-sm>
-        <img src="{{ imageData }}" class="img-fluid ception-image" alt="Beerception">
+        <img *ngIf="imageData" src="{{ imageData }}" class="img-fluid ception-image" alt="Beerception">
+        <p *ngIf="!imageData" >Loading latest beerception...</p>
+        <img *ngIf="!imageData" src="assets/imgs/beerception.png" class="img-fluid ception-image" alt="Beerception">
       </ion-col>
     </ion-row>
-    <ion-row *ngIf="beerFileInfo">
+    <ion-row *ngIf="beerFileInfo && imageData">
       <ion-col col-6>
         <button ion-button (click)="beerUp()" color="primary" round icon-start class="vote-button">
           <ion-icon name="ios-beer"></ion-icon>
